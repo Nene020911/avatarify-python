@@ -37,7 +37,14 @@ def to_tensor(a):
 
 class PredictorLocal:
     def __init__(self, config_path, checkpoint_path, relative=False, adapt_movement_scale=False, device=None, enc_downscale=1):
-        self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
+        if device:
+            self.device = device
+        elif torch.cuda.is_available():
+            self.device = 'cuda'
+        elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+            self.device = 'mps'
+        else:
+            self.device = 'cpu'
         self.relative = relative
         self.adapt_movement_scale = adapt_movement_scale
         self.start_frame = None
