@@ -42,7 +42,7 @@ class PredictorLocal:
         elif torch.cuda.is_available():
             self.device = 'cuda'
         elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
-            self.device = 'mps'
+            self.device = 'cpu'  # MPS causes garbled output (grid_sample is broken on MPS)
         else:
             self.device = 'cpu'
         self.relative = relative

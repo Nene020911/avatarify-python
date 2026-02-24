@@ -23,9 +23,9 @@ if _platform == 'darwin':
     if not opt.is_client:
         import torch
         if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
-            info('Apple Silicon detected — running locally with MPS GPU acceleration.')
+            info('Apple Silicon detected — using CPU (MPS has grid_sample incompatibility).')
         else:
-            info('\nNo GPU acceleration available on this Mac. Performance will be very slow.')
+            info('\nNo GPU acceleration available on this Mac. Performance may be slow.')
             info('Consider using --is-client with a remote GPU server for better performance.\n')
 
 
