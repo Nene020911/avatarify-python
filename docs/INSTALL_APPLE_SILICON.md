@@ -24,10 +24,11 @@ Or download the installer manually from [Miniconda](https://docs.conda.io/en/lat
 After installation, initialize conda for your shell:
 
 ```bash
-conda init zsh
+conda init zsh   # default shell on macOS
+# or: conda init bash
 ```
 
-Then restart your terminal.
+> **Important:** You must **close and reopen your terminal** after running `conda init`. If you skip this step you will see `CondaError: Run 'conda init' before 'conda activate'` when trying to activate environments. Alternatively, run `source ~/.zshrc` (or `source ~/.bashrc`) to reload the shell configuration without restarting.
 
 ### 2. Clone the Repository
 
@@ -156,6 +157,10 @@ Two windows will appear:
 See the main [README controls section](README.md#controls) for keyboard shortcuts.
 
 ## Troubleshooting
+
+### `CondaError: Run 'conda init' before 'conda activate'`
+
+Run `conda init zsh` (or `conda init bash`), then **close and reopen your terminal**. Alternatively, run `source ~/.zshrc` to reload without restarting. See [Step 1](#1-install-miniconda-arm64).
 
 ### `MPS available: False`
 
